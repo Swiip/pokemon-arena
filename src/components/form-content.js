@@ -4,9 +4,9 @@ import { unstable_createResource as createResource } from "react-cache";
 const timeout = duration =>
   new Promise(resolve => setTimeout(resolve, duration));
 
-const fetchApi = async path => {
+const fetchApi = async() => {
   await timeout(1000);
-  const response = await fetch(`https://pokeapi.co/api/v2${path}`);
+  const response = await fetch(`http://localhost:4200/pokemons`);
   const result = await response.json();
   return result;
 };
@@ -20,7 +20,7 @@ const useField = () => {
 };
 
 const FormContent = ({ history }) => {
-  const result = ApiResource.read("/pokemon/");
+  const result = ApiResource.read();
 
   const [first, handleFirst] = useField();
   const [second, handleSecond] = useField();
@@ -35,7 +35,7 @@ const FormContent = ({ history }) => {
       <fieldset>
         <legend>First oponent</legend>
         <select onChange={handleFirst}>
-          {result.results.map(pokemon => (
+          {result.map(pokemon => (
             <option key={pokemon.name}>{pokemon.name}</option>
           ))}
         </select>
@@ -43,7 +43,7 @@ const FormContent = ({ history }) => {
       <fieldset>
         <legend>Second oponent</legend>
         <select onChange={handleSecond}>
-          {result.results.map(pokemon => (
+          {result.map(pokemon => (
             <option key={pokemon.name}>{pokemon.name}</option>
           ))}
         </select>

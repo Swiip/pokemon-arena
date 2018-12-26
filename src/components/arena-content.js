@@ -6,11 +6,11 @@ const ArenaContent = ({ match }) => {
   return (
     <div>
       <img
-        src={`http://www.pokestadium.com/sprites/xy/${first}.gif`}
+        src={`http://localhost:4200/${first}.gif`}
         alt={first}
       />
       <img
-        src={`http://www.pokestadium.com/sprites/xy/${second}.gif`}
+        src={`http://localhost:4200/${second}.gif`}
         alt={second}
       />
     </div>
