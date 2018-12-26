@@ -4,14 +4,20 @@ import styled from "styled-components";
 import FormContent from "./form-content";
 
 const Container = styled.div`
+  background: url('/selector-background.svg');
+  height: 100vh;
+`;
+
+const Title = styled.h1`
+  color: #fff;
   text-align: center;
-  display: flex;
-  flex-direction: column;
+  font-size: 2.5rem;
+  padding: 14px;
 `;
 
 const Form = ({ history }) => (
   <Container>
-    <h1>Form</h1>
+    <Title>Choose your pokemons</Title>
     <Suspense fallback={<div>Loading</div>}>
       <FormContent history={history} />
     </Suspense>

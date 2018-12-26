@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg version="1.1" id="Calque_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 991.08 841.89"
+	 style="enable-background:new 0 0 991.08 841.89;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);fill:#00AACA;}
+	.st1{clip-path:url(#SVGID_2_);}
+	.st2{fill:none;stroke:#0093D3;stroke-width:20;stroke-miterlimit:10;}
+</style>
+<switch>
+	<foreignObject requiredExtensions="&ns_ai;" x="0" y="0" width="1" height="1">
+		<i:pgfRef  xlink:href="#adobe_illustrator_pgf">
+		</i:pgfRef>
+	</foreignObject>
+	<g i:extraneous="self">
+		<g>
+			<defs>
+				<rect id="SVGID_1_" y="0" width="991.08" height="841.89"/>
+			</defs>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+			</clipPath>
+			<rect class="st0" width="991.08" height="841.89"/>
+			<g class="st1">
+				<polyline class="st2" points="1082.67,23.84 990.69,115.82 907.61,32.74 824.05,116.31 742.92,35.19 661.8,116.31 578.62,33.12
+					495.33,116.42 412.25,33.34 329.88,115.71 248.27,34.1 166.17,116.2 83.52,33.55 0.87,116.2 -96.54,18.79 				"/>
+				<polyline class="st2" points="1082.67,110.77 990.69,202.75 907.61,119.68 824.05,203.24 742.92,122.12 661.8,203.24
+					578.62,120.06 495.33,203.35 412.25,120.27 329.88,202.65 248.27,121.03 166.17,203.13 83.52,120.49 0.87,203.13 -96.54,105.73
+									"/>
+				<polyline class="st2" points="1082.67,197.71 990.69,289.69 907.61,206.61 824.05,290.17 742.92,209.05 661.8,290.17
+					578.62,206.99 495.33,290.28 412.25,207.2 329.88,289.58 248.27,207.97 166.17,290.07 83.52,207.42 0.87,290.07 -96.54,192.66
+									"/>
+				<polyline class="st2" points="1082.67,284.64 990.69,376.62 907.61,293.54 824.05,377.11 742.92,295.99 661.8,377.11
+					578.62,293.92 495.33,377.21 412.25,294.14 329.88,376.51 248.27,294.9 166.17,377 83.52,294.35 0.87,377 -96.54,279.59 				"/>
+				<polyline class="st2" points="1082.67,371.57 990.69,463.55 907.61,380.47 824.05,464.04 742.92,382.92 661.8,464.04
+					578.62,380.86 495.33,464.15 412.25,381.07 329.88,463.44 248.27,381.83 166.17,463.93 83.52,381.28 0.87,463.93 -96.54,366.52
+									"/>
+				<polyline class="st2" points="1082.67,458.51 990.69,550.48 907.61,467.41 824.05,550.97 742.92,469.85 661.8,550.97
+					578.62,467.79 495.33,551.08 412.25,468 329.88,550.38 248.27,468.77 166.17,550.87 83.52,468.22 0.87,550.87 -96.54,453.46
+									"/>
+				<polyline class="st2" points="1082.67,545.44 990.69,637.42 907.61,554.34 824.05,637.91 742.92,556.78 661.8,637.91
+					578.62,554.72 495.33,638.01 412.25,554.94 329.88,637.31 248.27,555.7 166.17,637.8 83.52,555.15 0.87,637.8 -96.54,540.39
+									"/>
+				<polyline class="st2" points="1082.67,632.37 990.69,724.35 907.61,641.27 824.05,724.84 742.92,643.72 661.8,724.84
+					578.62,641.66 495.33,724.95 412.25,641.87 329.88,724.24 248.27,642.63 166.17,724.73 83.52,642.08 0.87,724.73 -96.54,627.32
+									"/>
+				<polyline class="st2" points="1082.67,719.3 990.69,811.28 907.61,728.21 824.05,811.77 742.92,730.65 661.8,811.77
+					578.62,728.59 495.33,811.88 412.25,728.8 329.88,811.18 248.27,729.57 166.17,811.66 83.52,729.02 0.87,811.66 -96.54,714.26
+									"/>
+			</g>
+		</g>
+	</g>
+</switch>
+</svg>
