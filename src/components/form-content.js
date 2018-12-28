@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import { unstable_createResource as createResource } from "react-cache";
 import styled from "styled-components";
 
@@ -15,23 +15,43 @@ const FieldContainer = styled.div`
   flex-direction: row;
   width: 100%;
 `;
+
 const Fieldset = styled.fieldset`
-  height: 40vh;
+  height: 80vh;
+  flex: 1;
+  border: 1px solid #444;
+  border-radius: 3px;
+  overflow-y: hidden;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
+
 const Legend = styled.legend`
   color: #fff;
   text-align: center;
+  font-family: "Pokemon";
+  font-size: 2em;
+  margin-bottom: 2rem;
 `;
 
 const FightButton = styled.button`
+  font-family: "Pokemon";
+  position: fixed;
   border: 2px solid hsl(60, 100%, 49%);
   background-color: rgb(0, 149, 216);
-  color:  hsl(60, 100%, 49%);
+  color: hsl(60, 100%, 49%);
   width: 150px;
+  left: 50%;
+  margin-left: -75px;
+  height: 150px;
+  top: 50%;
+  margin-top: -75px;
   font-size: 1.5rem;
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 50%;
   transition: all 0.3s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
   &:hover {
     background-color: hsl(190, 100%, 40%);
   }
@@ -42,9 +62,11 @@ const FightButton = styled.button`
 `;
 
 const PokemonListContainer = styled.div`
-  overflow-x: scroll;
   height: 100%;
-
+  overflow-x: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   & input {
     position: relative;
     left: -9000px;
@@ -53,15 +75,31 @@ const PokemonListContainer = styled.div`
     display: block;
   }
 
-  & input:checked+label {
+  & input:checked + label {
     font-weight: bold;
   }
+`;
+
+const PokemonListItem = styled.div`
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  width: 140px;
+  height: 140px;
+  border-radius: 3px;
+  text-align: center;
+  cursor: pointer;
+`;
+
+const Img = styled.img`
+  width: 96px;
+  height: 96px;
 `;
 
 const timeout = duration =>
   new Promise(resolve => setTimeout(resolve, duration));
 
-const fetchApi = async() => {
+const fetchApi = async () => {
   await timeout(1000);
   const response = await fetch(`http://localhost:4200/pokemons`);
   const result = await response.json();
@@ -85,7 +123,7 @@ const FormContent = ({ history }) => {
   const onSubmit = event => {
     event.preventDefault();
 
-    if(first && second) {
+    if (first && second) {
       history.push(`/arena/${first}/${second}`);
     }
   };
@@ -94,29 +132,56 @@ const FormContent = ({ history }) => {
     <Form onSubmit={onSubmit}>
       <FieldContainer>
         <Fieldset>
-          <Legend>First oponent</Legend>
+          <Legend>First fighter</Legend>
           <PokemonListContainer>
-          {result.map(pokemon => (
-            <Fragment key={pokemon.name}>
-              <input type="radio" onChange={handleFirst} id={`oponent1-${pokemon.name}`} value={pokemon.name} name="oponent1" />
-              <label htmlFor={`oponent1-${pokemon.name}`}>{pokemon.name}</label>
-            </Fragment>
-          ))}
+            {result.map((pokemon, index) => (
+              <PokemonListItem key={pokemon.name}>
+                <Img
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index +
+                    1}.png`}
+                />
+                <input
+                  type="radio"
+                  onChange={handleFirst}
+                  id={`oponent1-${pokemon.name}`}
+                  value={pokemon.name}
+                  name="oponent1"
+                />
+                <label htmlFor={`oponent1-${pokemon.name}`}>
+                  {pokemon.name}
+                </label>
+              </PokemonListItem>
+            ))}
           </PokemonListContainer>
         </Fieldset>
         <Fieldset>
-          <Legend>Second oponent</Legend>
+          <Legend>Second fighter</Legend>
           <PokemonListContainer>
-          {result.map(pokemon => (
-            <Fragment key={pokemon.name}>
-              <input type="radio" onChange={handleSecond} id={`oponent2-${pokemon.name}`} value={pokemon.name} name="oponent2" />
-              <label htmlFor={`oponent2-${pokemon.name}`}>{pokemon.name}</label>
-            </Fragment>
-          ))}
+            {result.map((pokemon, index) => (
+              <PokemonListItem key={pokemon.name}>
+                <Img
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index +
+                    1}.png`}
+                  alt={pokemon.name}
+                />
+                <input
+                  type="radio"
+                  onChange={handleSecond}
+                  id={`oponent2-${pokemon.name}`}
+                  value={pokemon.name}
+                  name="oponent2"
+                />
+                <label htmlFor={`oponent2-${pokemon.name}`}>
+                  {pokemon.name}
+                </label>
+              </PokemonListItem>
+            ))}
           </PokemonListContainer>
         </Fieldset>
       </FieldContainer>
-      <FightButton type="submit" disabled={!first || !second}>Fight!</FightButton>
+      <FightButton type="submit" disabled={!first || !second}>
+        Fight!
+      </FightButton>
     </Form>
   );
 };
