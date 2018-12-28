@@ -7,7 +7,7 @@ class ErrorHandler extends Component {
   }
 
   componentDidCatch(...args) {
-    console.log("catch error", args);
+    console.error("catch error", args);
     this.setState({ error: true });
   }
 

@@ -10,6 +10,8 @@ import Arena from "./components/arena";
 
 const Container = styled.div`
   font-family: sans-serif;
+  min-height: 100vh;
+  min-width: 100vw;
 `;
 
 const App = () => (
