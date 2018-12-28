@@ -136,10 +136,6 @@ const FormContent = ({ history }) => {
           <PokemonListContainer>
             {result.map((pokemon, index) => (
               <PokemonListItem key={pokemon.name}>
-                <Img
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index +
-                    1}.png`}
-                />
                 <input
                   type="radio"
                   onChange={handleFirst}
@@ -148,6 +144,10 @@ const FormContent = ({ history }) => {
                   name="oponent1"
                 />
                 <label htmlFor={`oponent1-${pokemon.name}`}>
+                  <Img
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index +
+                      1}.png`}
+                  />
                   {pokemon.name}
                 </label>
               </PokemonListItem>
@@ -159,11 +159,6 @@ const FormContent = ({ history }) => {
           <PokemonListContainer>
             {result.map((pokemon, index) => (
               <PokemonListItem key={pokemon.name}>
-                <Img
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index +
-                    1}.png`}
-                  alt={pokemon.name}
-                />
                 <input
                   type="radio"
                   onChange={handleSecond}
@@ -172,6 +167,11 @@ const FormContent = ({ history }) => {
                   name="oponent2"
                 />
                 <label htmlFor={`oponent2-${pokemon.name}`}>
+                  <Img
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index +
+                      1}.png`}
+                    alt={pokemon.name}
+                  />
                   {pokemon.name}
                 </label>
               </PokemonListItem>
