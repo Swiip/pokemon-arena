@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
+import "./index.css";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import ErrorHandler from "./components/errors";
