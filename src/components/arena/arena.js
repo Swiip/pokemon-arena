@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import styled from "styled-components";
 
-import ArenaContent from "./arena-content";
+import ArenaContent from "./battle";
 
 const Container = styled.div`
   text-align: center;
