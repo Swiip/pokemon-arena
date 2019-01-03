@@ -5,6 +5,8 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "bluebird": "^3.5.3",
+    "fs-extra": "^7.0.1",
     "react": "16.7.0-alpha.2",
     "react-cache": "2.0.0-alpha.1",
     "react-dom": "16.7.0-alpha.2",
