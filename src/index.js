@@ -7,7 +7,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import ErrorHandler from "./components/errors";
 import Welcome from "./components/welcome";
 import Form from "./components/form";
-import Arena from "./components/arena";
+import Arena from "./components/arena/arena";
 
 const Container = styled.div`
   font-family: sans-serif;
