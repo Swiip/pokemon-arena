@@ -4,8 +4,10 @@ import styled from "styled-components";
 import FormContent from "./form-content";
 
 const Container = styled.div`
-  background: url('/selector-background.svg');
+  background: url("/selector-background.svg");
   height: 100vh;
+  background-repeat: repeat;
+  background-size: 100px;
 `;
 
 const Title = styled.h1`
