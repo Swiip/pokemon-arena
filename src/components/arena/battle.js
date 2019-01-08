@@ -15,6 +15,7 @@ const Container = styled.div`
   background-size: cover;
   background-position: center;
   position: relative;
+  border: 2px solid #FFFFFF;
 `;
 
 const ArenaContent = ({ match }) => {

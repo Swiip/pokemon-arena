@@ -1,5 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import styled from "styled-components";
+import Loader from "../loader";
+import BackButton from '../back-button';
 
 const Chart = lazy(() => import("./chart"));
 
@@ -20,10 +22,18 @@ const Title = styled.h1`
   padding: 14px;
 `;
 
+const LoaderContainer = styled.div`
+  margin-top: 10vh;
+  width: 20rem;
+  height: 20rem;
+`;
+
 const Stats = ({ async }) => (
   <Container>
+    <BackButton to="/" />
+
     <Title>Statistics ({async ? "async" : "sync"})</Title>
-    <Suspense fallback={<div>Loading</div>}>
+    <Suspense fallback={<LoaderContainer><Loader/></LoaderContainer>}>
       <Chart async={async} />
     </Suspense>
   </Container>
