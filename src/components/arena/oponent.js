@@ -75,7 +75,7 @@ const LifeBarNumbers = styled.p`
 
 const getImage = (position, name) =>
   position === "first"
-    ? `http://www.pokestadium.com/sprites/xy/back/${name}.gif`
+    ? `http://localhost:4200/back/${name}.gif`
     : `http://localhost:4200/${name}.gif`;
 
 const Oponent = ({ position, data }) => (

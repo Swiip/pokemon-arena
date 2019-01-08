@@ -6,6 +6,15 @@ const Container = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
+  background-color: yellow;
+  min-height: 100vh;
+`;
+
+const Title = styled.h1`
+  color: black;
+  text-align: center;
+  font-size: 2.5rem;
+  padding: 14px;
 `;
 
 const Button = styled(Link)`
@@ -20,9 +29,12 @@ const Button = styled(Link)`
 
 const Welcome = () => (
   <Container>
-    <h1>Welcome to the Pokemon Arena</h1>
-    <img src="/welcome.png" alt="Welcome" />
+    <Title>Welcome to the Pokemon Arena</Title>
+    <div>
+      <img src="/welcome.jpg" alt="Welcome" />
+    </div>
     <Button to="/form">Go</Button>
+    <Button to="/stats">Stats</Button>
   </Container>
 );
 
