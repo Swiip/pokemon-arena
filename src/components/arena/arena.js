@@ -1,5 +1,7 @@
 import React, { Suspense } from "react";
 import styled from "styled-components";
+import Loader from "../loader";
+import BackButton from '../back-button';
 
 import ArenaContent from "./battle";
 
@@ -7,10 +9,20 @@ const Container = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   min-height: 100vh;
   width: 100%;
-  background-color: #12d881;
+
+  background: url("/selector-background.svg");
+  background-repeat: repeat;
+  background-size: 100px;
+`;
+
+const LoaderContainer = styled.div`
+  margin-top: 10vh;
+  width: 20rem;
+  height: 20rem;
 `;
 
 const Title = styled.h1`
@@ -22,8 +34,9 @@ const Title = styled.h1`
 
 const Arena = ({ match }) => (
   <Container>
+    <BackButton to="/arena/choice" />
     <Title>Arena</Title>
-    <Suspense fallback={<div>Loading</div>}>
+    <Suspense fallback={<LoaderContainer><Loader/></LoaderContainer>}>
       <ArenaContent match={match} />
     </Suspense>
   </Container>

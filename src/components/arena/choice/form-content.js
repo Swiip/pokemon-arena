@@ -19,7 +19,7 @@ const FieldContainer = styled.div`
 const Fieldset = styled.fieldset`
   height: 80vh;
   flex: 1;
-  border: 1px solid #444;
+  border: 1px solid #fff;
   border-radius: 3px;
   overflow-y: hidden;
   margin-left: 10px;
@@ -31,33 +31,41 @@ const Legend = styled.legend`
   text-align: center;
   font-family: "Pokemon";
   font-size: 2em;
-  margin-bottom: 2rem;
+  padding: 0.5rem;
 `;
 
 const FightButton = styled.button`
   font-family: "Pokemon";
-  position: fixed;
-  border: 2px solid hsl(60, 100%, 49%);
-  background-color: rgb(0, 149, 216);
-  color: hsl(60, 100%, 49%);
-  width: 150px;
-  left: 50%;
-  margin-left: -75px;
-  height: 150px;
-  top: 50%;
-  margin-top: -75px;
   font-size: 1.5rem;
+
+  position: fixed;
+  width: 150px;
+  height: 150px;
+
+  left: 50%;
+  top: 50%;
+
+  margin-left: -75px;
+  margin-top: -75px;
+
   padding: 8px;
+
   border-radius: 50%;
-  transition: all 0.3s;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(0, 0, 0, 0.24);
   cursor: pointer;
+
+  border: 2px solid rgba(255, 0, 0, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 0, 0, 0.8);
+
+  transition: all 0.3s;
   &:hover {
-    background-color: hsl(190, 100%, 40%);
+    background-color: rgba(255, 255, 255, 1);
+    border: 3px solid rgba(255, 0, 0, 1);
+    color: rgba(255, 0, 0, 1);
   }
   &[disabled] {
-    padding: 5px;
-    background-color: grey;
+    filter: grayscale(100%);
   }
 `;
 
@@ -72,24 +80,30 @@ const PokemonListContainer = styled.div`
     left: -9000px;
   }
   & label {
-    display: block;
+    &:hover {
+      border: 2px solid rgba(255, 0, 0, 0.6);
+      background-color: rgba(255, 255, 255, 0.6);
+    }
+    width: 140px;
+    height: 140px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
   }
 
   & input:checked + label {
+    border: 2px solid red;
+    background-color: rgba(255, 255, 255, 0.8);
     font-weight: bold;
   }
 `;
 
-const PokemonListItem = styled.div`
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-  width: 140px;
-  height: 140px;
-  border-radius: 3px;
-  text-align: center;
-  cursor: pointer;
-`;
 
 const Img = styled.img`
   width: 96px;
@@ -135,7 +149,7 @@ const FormContent = ({ history }) => {
           <Legend>First fighter</Legend>
           <PokemonListContainer>
             {result.map((pokemon, index) => (
-              <PokemonListItem key={pokemon.name}>
+              <div key={pokemon.name}>
                 <input
                   type="radio"
                   onChange={handleFirst}
@@ -150,7 +164,7 @@ const FormContent = ({ history }) => {
                   />
                   {pokemon.name}
                 </label>
-              </PokemonListItem>
+              </div>
             ))}
           </PokemonListContainer>
         </Fieldset>
@@ -158,7 +172,7 @@ const FormContent = ({ history }) => {
           <Legend>Second fighter</Legend>
           <PokemonListContainer>
             {result.map((pokemon, index) => (
-              <PokemonListItem key={pokemon.name}>
+              <div key={pokemon.name}>
                 <input
                   type="radio"
                   onChange={handleSecond}
@@ -174,7 +188,7 @@ const FormContent = ({ history }) => {
                   />
                   {pokemon.name}
                 </label>
-              </PokemonListItem>
+              </div>
             ))}
           </PokemonListContainer>
         </Fieldset>

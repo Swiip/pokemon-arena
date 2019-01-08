@@ -5,8 +5,8 @@ import "./index.css";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import ErrorHandler from "./components/errors";
-import Welcome from "./components/welcome";
-import Form from "./components/form";
+import Welcome from "./components/home/welcome";
+import ChoiceForm from "./components/arena/choice/form";
 import Arena from "./components/arena/arena";
 import Stats from "./components/stats/stats";
 import Debug from "./components/debug";
@@ -36,7 +36,7 @@ const App = ({ async }) => (
     <ErrorHandler>
       <Container>
         <Route path="/" exact component={Welcome} />
-        <Route path="/form" exact component={Form} />
+        <Route path="/arena/choice" exact component={ChoiceForm} />
         <Route path="/arena/:first/:second" exact component={Arena} />
         <Route path="/stats" exact component={() => <Stats async={async} />} />
       </Container>
