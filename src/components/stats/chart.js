@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { unstable_createResource as createResource } from "react-cache";
 import { unstable_scheduleCallback as scheduleCallback } from "scheduler";
 import styled from "styled-components";
@@ -39,7 +39,7 @@ const Input = styled.input`
   font-size: 24px;
   border: 2px solid black;
   border-radius: 3px;
-  width: 100px;
+  width: 300px;
   text-align: center;
   margin: 10px;
 `;
@@ -58,16 +58,25 @@ const PokemonPoint = ({ x, y, datum, name }) => (
 
 const Chart = ({ async }) => {
   const pokemonData = ApiResource.read();
-  const chartData = pokemonData.map(data => ({
-    x: data.attack,
-    y: data.defense,
-    z: data.speed,
-    name: data.name
-  }));
+  const [chartData, setChartData] = useState([]);
+
+  useEffect(() => {
+    setChartData(
+      pokemonData.map(data => ({
+        x: data.attack,
+        y: data.defense,
+        z: data.speed,
+        name: data.name
+      }))
+    );
+
+    console.log("lol");
+  }, []);
 
   const [count, setCount] = useState(10);
   const changeHandler = event => {
     const value = parseInt(event.target.value, 10);
+
     if (async) {
       console.log("async update");
       scheduleCallback(() => setCount(value));
