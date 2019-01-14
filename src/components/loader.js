@@ -12,8 +12,11 @@ const rotate = keyframes`
 `;
 
 const Pokeball = styled.svg`
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
   animation: ${rotate} 3s linear infinite;
 `;
 
