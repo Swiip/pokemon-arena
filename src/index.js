@@ -49,4 +49,3 @@ const App = ({ async }) => (
 );
 
 syncRender();
-asyncRender();
