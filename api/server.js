@@ -57,7 +57,9 @@ router.get("/pokemons/:name", async ctx => {
   );
 });
 
+// TODO: Switch back to PUT
 router.get("/debounce-network/:sec", ctx => {
+  ctx.set("Access-Control-Allow-Origin", `http://localhost:3000`);
   debounceTime = parseInt(ctx.params.sec);
   ctx.status = 200;
   ctx.body = "ok";

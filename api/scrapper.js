@@ -62,9 +62,7 @@ const getData = async pokemonName => {
 };
 
 async function scrap() {
-  // Create necessary files
-  // await fs.ensureDir(path.join(__dirname, "./data"));
-  // await fs.ensureDir(path.join(__dirname, "./data/img"));
+  // Create necessary directories
   await fs.ensureDir(path.join(__dirname, "./data/img/xy/back"));
   await fs.ensureDir(path.join(__dirname, "./data/img/black-white"));
   await fs.ensureDir(path.join(__dirname, "./data/pokemon"));
