@@ -17,18 +17,21 @@ const Container = styled.div`
   min-width: 100vw;
 `;
 
-const rootSyncElement = document.getElementById("sync-root");
 const rootAsyncElement = document.getElementById("async-root");
-const rootAsync = createRoot(rootAsyncElement);
+const rootSyncElement = document.getElementById("sync-root");
 
 const syncRender = () => {
-  rootSyncElement.style.display = "block";
   rootAsyncElement.style.display = "none";
+  rootSyncElement.style.display = "block";
+  render(<App />, rootSyncElement);
 };
 
 const asyncRender = () => {
   rootSyncElement.style.display = "none";
   rootAsyncElement.style.display = "block";
+  const rootAsync = createRoot(rootAsyncElement);
+
+  rootAsync.render(<App async />);
 };
 
 const App = ({ async }) => (
@@ -46,5 +49,3 @@ const App = ({ async }) => (
 );
 
 syncRender();
-render(<App />, rootSyncElement);
-rootAsync.render(<App async />);
