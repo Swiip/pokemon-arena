@@ -9,7 +9,7 @@ import Welcome from "./components/home/welcome";
 import ChoiceForm from "./components/arena/choice/form";
 import Arena from "./components/arena/arena";
 import Stats from "./components/stats/stats";
-import Debug from "./components/debug";
+import Debug from "./components/debug/debug";
 
 const Container = styled.div`
   font-family: sans-serif;
@@ -17,21 +17,16 @@ const Container = styled.div`
   min-width: 100vw;
 `;
 
-const rootAsyncElement = document.getElementById("async-root");
-const rootSyncElement = document.getElementById("sync-root");
+const rootElement = document.getElementById("root");
 
 const syncRender = () => {
-  rootAsyncElement.style.display = "none";
-  rootSyncElement.style.display = "block";
-  render(<App />, rootSyncElement);
+  console.log("sync rendering");
+  render(<App />, rootElement);
 };
 
 const asyncRender = () => {
-  rootSyncElement.style.display = "none";
-  rootAsyncElement.style.display = "block";
-  const rootAsync = createRoot(rootAsyncElement);
-
-  rootAsync.render(<App async />);
+  console.log("async rendering");
+  createRoot(rootElement).render(<App async />);
 };
 
 const App = ({ async }) => (
@@ -43,9 +38,13 @@ const App = ({ async }) => (
         <Route path="/arena/:first/:second" exact component={Arena} />
         <Route path="/stats" exact component={() => <Stats async={async} />} />
       </Container>
-      <Debug async={async} syncRender={syncRender} asyncRender={asyncRender} />
+      <Debug async={async} />
     </ErrorHandler>
   </BrowserRouter>
 );
 
-syncRender();
+if (window.location.search === "?async") {
+  asyncRender();
+} else {
+  syncRender();
+}

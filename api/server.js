@@ -43,15 +43,24 @@ router.get("/pokemons/stats", async ctx => {
     pokemonData.stats.forEach(stat => {
       result[stat.stat.name] = stat.base_stat;
     });
-    console.log("Pokemon ready", result);
     return result;
   });
   ctx.body = JSON.stringify(data);
 });
 
-router.put("debounce-network", ctx => {
-  debounceTime = ctx.req.body;
+router.get("/pokemons/:name", async ctx => {
+  await timeout();
+  ctx.set("Access-Control-Allow-Origin", `http://localhost:3000`);
+  ctx.body = await readFile(
+    path.join(__dirname, `./data/pokemon/${ctx.params.name}.json`),
+    "utf8"
+  );
+});
+
+router.get("/debounce-network/:sec", ctx => {
+  debounceTime = parseInt(ctx.params.sec);
   ctx.status = 200;
+  ctx.body = "ok";
 });
 
 app

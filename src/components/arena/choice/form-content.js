@@ -104,17 +104,12 @@ const PokemonListContainer = styled.div`
   }
 `;
 
-
 const Img = styled.img`
   width: 96px;
   height: 96px;
 `;
 
-const timeout = duration =>
-  new Promise(resolve => setTimeout(resolve, duration));
-
 const fetchApi = async () => {
-  await timeout(1000);
   const response = await fetch(`http://localhost:4200/pokemons`);
   const result = await response.json();
   return result;

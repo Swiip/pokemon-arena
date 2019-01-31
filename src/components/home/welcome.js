@@ -22,6 +22,10 @@ const Title = styled.h1`
   padding: 14px;
 `;
 
+const Image = styled.img`
+  max-width: 100%;
+`;
+
 const Button = styled(Link)`
   padding: 1rem;
   margin: 1vh;
@@ -38,7 +42,7 @@ const Button = styled(Link)`
 
 const Subtitle = styled.h2`
   font-size: 2rem;
-  color: #FFFFFF;
+  color: #ffffff;
   position: relative;
   top: -3rem;
 `;
@@ -47,7 +51,7 @@ const Welcome = () => (
   <Container>
     <Title>Pokemon</Title>
     <div>
-      <img src="/welcome.jpg" alt="Welcome" />
+      <Image src="/welcome.jpg" alt="Welcome" />
       <Subtitle>Welcome to the Pokemon Arena</Subtitle>
     </div>
     <Button to="/arena/choice">Go</Button>
