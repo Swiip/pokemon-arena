@@ -1,7 +1,8 @@
 import { unstable_createResource as createResource } from "../../../vendor/react-cache.development";
+import {fetchDebug} from '../../debug/fetch';
 
-const fetchApi = async path => {
-  const response = await fetch(`http://localhost:4200/${path}`);
+const fetchApi = async pokemon => {
+  const response = await fetchDebug(`/api/pokemon/${pokemon}.json`);
   const result = await response.json();
   return result;
 };
@@ -11,8 +12,8 @@ const ApiResource = createResource(fetchApi);
 export const loadData = ({ first, second }) => {
   // get pokemon data
   const data = [
-    ApiResource.read(`pokemons/${first}`),
-    ApiResource.read(`pokemons/${second}`)
+    ApiResource.read(first),
+    ApiResource.read(second)
   ];
 
   return data;

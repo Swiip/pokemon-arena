@@ -17,7 +17,7 @@ const PokemonInput = ({ pokemon, name, onChange }) => (
     />
     <label htmlFor={`${name}-${pokemon.name}`}>
       <Img
-        src={`http://localhost:4200/black-white/${pokemon.name}.png`}
+        src={`/api/img/black-white/${pokemon.name}.png`}
         alt={pokemon.name}
       />
       {pokemon.name}

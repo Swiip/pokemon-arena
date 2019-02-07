@@ -9,11 +9,7 @@ const Container = styled.div`
 `;
 
 const Latency = ({ async }) => {
-  const handleChange = event => {
-    fetch(
-      `http://localhost:4200/debounce-network/${event.target.value * 1000}`
-    );
-  };
+  const handleChange = event => localStorage.setItem('latency', event.target.value * 1000);
 
   useEffect(() => handleChange({ target: { value: 2 } }));
 

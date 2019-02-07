@@ -24,7 +24,7 @@ const InputTag = styled.input`
 const Input = ({ async, onChange }) => {
   const [count, setCount] = useState(10);
 
-  useEffect(() => onChange(count), []);
+  useEffect(() => onChange(count), [count, onChange]);
 
   const changeHandler = event => {
     const newCount = parseInt(event.target.value, 10);
