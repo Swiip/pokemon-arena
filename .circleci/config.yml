@@ -1,0 +1,67 @@
+version: 2.1
+jobs:
+  build-project:
+    docker:
+      - image: cypress/base:10
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+      - run: npm ci
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm run api:scrap
+      - run: npm run build
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./*
+
+  check:
+    docker:
+      - image: cypress/base:10
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: npm run test
+
+  deploy:
+    docker:
+      - image: cypress/base:10
+    working_directory: ~/repo
+    environment:
+      NODE_ENV: production
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: npm run build
+      - run: npm run deploy
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-project:
+          filters:
+            tags:
+              only: /.*/
+      - check:
+          requires:
+            - build-project
+          filters:
+            tags:
+              only: /.*/
+
+      - deploy:
+          requires:
+            - check
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/

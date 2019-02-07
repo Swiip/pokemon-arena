@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {fetchDebug} from '../../debug/fetch';
 import { unstable_createResource as createResource } from "../../../vendor/react-cache.development";
 import styled from "styled-components";
 
@@ -14,9 +15,9 @@ const HtmlForm = styled.form`
 `;
 
 const fetchApi = async () => {
-  const response = await fetch(`http://localhost:4200/pokemons`);
+  const response = await fetchDebug(`/api/pokemons.json`);
   const result = await response.json();
-  return result;
+  return result.results;
 };
 
 const ApiResource = createResource(fetchApi);

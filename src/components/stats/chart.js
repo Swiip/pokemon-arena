@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import styled from "styled-components";
+import {fetchDebug} from '../debug/fetch';
 
 import { unstable_createResource as createResource } from "../../vendor/react-cache.development";
 
@@ -7,7 +8,7 @@ import Input from "./input";
 import Scatter from "./scatter";
 
 const fetchApi = async () => {
-  const response = await fetch(`http://localhost:4200/pokemons/stats`);
+  const response = await fetchDebug(`/api/pokemons.stats.json`);
   const result = await response.json();
   return result;
 };

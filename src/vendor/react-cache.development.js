@@ -13,7 +13,7 @@
 
 
 
-if (process.env.NODE_ENV !== "production") {
+if (true) {
   (function() {
 'use strict';
 
