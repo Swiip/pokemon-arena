@@ -4,10 +4,10 @@ import styled from "styled-components";
 import "./index.css";
 import { BrowserRouter, Route } from "react-router-dom";
 
-import ErrorHandler from "./components/errors";
+import ErrorHandler from "./components/design-system/errors";
 import Welcome from "./components/home/welcome";
-import ChoiceForm from "./components/arena/choice/form";
-import Arena from "./components/arena/arena";
+import Choice from "./components/arena/choice/choice";
+import Arena from "./components/arena/battle/arena";
 import Stats from "./components/stats/stats";
 import Debug from "./components/debug/debug";
 
@@ -34,7 +34,7 @@ const App = ({ async }) => (
     <ErrorHandler>
       <Container>
         <Route path="/" exact component={Welcome} />
-        <Route path="/arena/choice" exact component={ChoiceForm} />
+        <Route path="/arena/choice" exact component={Choice} />
         <Route path="/arena/:first/:second" exact component={Arena} />
         <Route path="/stats" exact component={() => <Stats async={async} />} />
       </Container>
