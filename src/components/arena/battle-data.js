@@ -1,4 +1,5 @@
-import { unstable_createResource as createResource } from "react-cache";
+// import { unstable_createResource as createResource } from "react-cache";
+import { unstable_createResource as createResource } from "../../vendor/react-cache.development";
 
 const fetchApi = async path => {
   const response = await fetch(`http://localhost:4200/${path}`);
