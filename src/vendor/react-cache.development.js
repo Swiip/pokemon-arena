@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /** @license React v16.6.1
  * react-cache.development.js
  *

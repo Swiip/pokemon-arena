@@ -1,7 +1,7 @@
-import React, { Fragment, useReducer, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 import styled from "styled-components";
 
-import Oponent from "./oponent";
+import Opponent from "./opponent";
 import Logs from "./logs";
 import { loadData } from "./battle-data";
 import { initialState, reducer, fight } from "./battle-logic";
@@ -15,7 +15,7 @@ const Container = styled.div`
   background-size: cover;
   background-position: center;
   position: relative;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #ffffff;
 `;
 
 const ArenaContent = ({ match }) => {
@@ -24,13 +24,13 @@ const ArenaContent = ({ match }) => {
   useEffect(() => fight(state, dispatch));
 
   return (
-    <Fragment>
+    <>
       <Container>
-        <Oponent position="first" data={state.first} />
-        <Oponent position="second" data={state.second} />
+        <Opponent position="first" data={state.first} />
+        <Opponent position="second" data={state.second} />
       </Container>
       <Logs logs={state.logs} />
-    </Fragment>
+    </>
   );
 };
 

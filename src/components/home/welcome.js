@@ -2,24 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const Container = styled.div`
+import CommonPage from "../design-system/page";
+import Title from "../design-system/title";
+
+const Page = styled(CommonPage)`
   font-family: "Pokemon";
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-
-  background: url("/selector-background.svg");
-  background-repeat: repeat;
-  background-size: 100px;
-`;
-
-const Title = styled.h1`
-  color: black;
-  text-align: center;
-  font-size: 3rem;
-  padding: 14px;
 `;
 
 const Image = styled.img`
@@ -48,7 +35,7 @@ const Subtitle = styled.h2`
 `;
 
 const Welcome = () => (
-  <Container>
+  <Page>
     <Title>Pokemon</Title>
     <div>
       <Image src="/welcome.jpg" alt="Welcome" />
@@ -56,7 +43,7 @@ const Welcome = () => (
     </div>
     <Button to="/arena/choice">Go</Button>
     <Button to="/stats">Stats</Button>
-  </Container>
+  </Page>
 );
 
 export default Welcome;
