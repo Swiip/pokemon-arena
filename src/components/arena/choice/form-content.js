@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { unstable_createResource as createResource } from "react-cache";
 import { unstable_createResource as createResource } from "../../../vendor/react-cache.development";
 import styled from "styled-components";
 

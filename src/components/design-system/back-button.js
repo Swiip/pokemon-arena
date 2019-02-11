@@ -23,10 +23,6 @@ const Button = styled(Link)`
   }
 `;
 
-const BackButton = ({to}) => {
-  return (
-    <Button to={to}>Back</Button>
-  );
-};
+const BackButton = ({ to }) => <Button to={to}>Back</Button>;
 
 export default BackButton;

@@ -1,4 +1,4 @@
-import { timeout } from "../../utils";
+import { timeout } from "../../../utils";
 
 const { floor, random } = Math;
 

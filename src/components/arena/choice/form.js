@@ -1,41 +1,56 @@
-import React, { Suspense } from "react";
+import React, { useState } from "react";
+import { unstable_createResource as createResource } from "../../../vendor/react-cache.development";
 import styled from "styled-components";
-import Loader from '../../loader';
-import BackButton from '../../back-button';
 
+import FieldContainer from "./field-container";
+import FightButton from "./fight-button";
 
-import FormContent from "./form-content";
-
-const Container = styled.div`
-  background: url("/selector-background.svg");
-  background-repeat: repeat;
-  background-size: 100px;
-  height: 100vh;
+const HtmlForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 15px;
+  width: 100%;
 `;
 
-const LoaderContainer = styled.div`
-  margin-top: 10vh;
-  width: 20rem;
-  height: 20rem;
-`;
+const fetchApi = async () => {
+  const response = await fetch(`http://localhost:4200/pokemons`);
+  const result = await response.json();
+  return result;
+};
 
-const Title = styled.h1`
-  color: #fff;
-  text-align: center;
-  font-size: 2.5rem;
-  padding: 14px;
-`;
+const ApiResource = createResource(fetchApi);
 
-const Form = ({ history }) => (
-  <Container>
-    <BackButton to="/" />
-    <Title>Choose your pokemons</Title>
-    <Suspense fallback={<LoaderContainer><Loader/></LoaderContainer>}>
-      <FormContent history={history} />
-    </Suspense>
-  </Container>
-);
+const useField = () => {
+  const [value, setter] = useState();
+  const changeHandler = event => setter(event.target.value);
+  return [value, changeHandler];
+};
+
+const Form = ({ history }) => {
+  const pokemons = ApiResource.read();
+
+  const [first, handleFirst] = useField();
+  const [second, handleSecond] = useField();
+
+  const onSubmit = event => {
+    event.preventDefault();
+
+    if (first && second) {
+      history.push(`/arena/${first}/${second}`);
+    }
+  };
+
+  return (
+    <HtmlForm onSubmit={onSubmit}>
+      <FieldContainer
+        pokemons={pokemons}
+        onFirst={handleFirst}
+        onSecond={handleSecond}
+      />
+      <FightButton first={first} second={second} />
+    </HtmlForm>
+  );
+};
+
 export default Form;

@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import styled from "styled-components";
-import Loader from "../loader";
-import BackButton from '../back-button';
+import Loader from "../design-system/loader";
+import BackButton from "../design-system/back-button";
 
 const Chart = lazy(() => import("./chart"));
 
@@ -33,7 +33,13 @@ const Stats = ({ async }) => (
     <BackButton to="/" />
 
     <Title>Statistics ({async ? "async" : "sync"})</Title>
-    <Suspense fallback={<LoaderContainer><Loader/></LoaderContainer>}>
+    <Suspense
+      fallback={
+        <LoaderContainer>
+          <Loader />
+        </LoaderContainer>
+      }
+    >
       <Chart async={async} />
     </Suspense>
   </Container>
