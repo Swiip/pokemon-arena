@@ -1,5 +1,5 @@
 import React from "react";
-import { render, createRoot } from "react-dom";
+import { render, unstable_createRoot as createRoot } from "react-dom";
 import styled from "styled-components";
 import "./index.css";
 import { BrowserRouter, Route } from "react-router-dom";

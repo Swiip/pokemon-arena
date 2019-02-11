@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 
 const PokemonImage = styled.img`
@@ -78,8 +78,8 @@ const getImage = (position, name) =>
     ? `http://localhost:4200/xy/back/${name}.gif`
     : `http://localhost:4200/xy/${name}.gif`;
 
-const Oponent = ({ position, data }) => (
-  <Fragment>
+const Opponent = ({ position, data }) => (
+  <>
     <PokemonImage
       position={position}
       src={getImage(position, data.name)}
@@ -96,7 +96,7 @@ const Oponent = ({ position, data }) => (
         </LifeBarNumbers>
       </LifeBarSection>
     </StatBar>
-  </Fragment>
+  </>
 );
 
-export default Oponent;
+export default Opponent;
