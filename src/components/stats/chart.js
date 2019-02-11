@@ -45,7 +45,7 @@ const Input = styled.input`
 // http://www.pokestadium.com/sprites/black-white/${datum.name}.png
 const PokemonPoint = ({ x, y, datum, name }) => (
   <image
-    href={`http://www.pokestadium.com/sprites/black-white/${datum.name}.png`}
+    href={`http://localhost:4200/black-white/${datum.name}.png`}
     x={x}
     y={y}
     height="20px"
