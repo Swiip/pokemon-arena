@@ -7,7 +7,7 @@ const Img = styled.img`
 `;
 
 const PokemonInput = ({ pokemon, name, onChange }) => (
-  <>
+  <div>
     <input
       type="radio"
       onChange={onChange}
@@ -22,7 +22,7 @@ const PokemonInput = ({ pokemon, name, onChange }) => (
       />
       {pokemon.name}
     </label>
-  </>
+  </div>
 );
 
 export default PokemonInput;
