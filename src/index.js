@@ -26,19 +26,17 @@ const App = () => {
   return (
     <ConcurrentMode>
       <BrowserRouter>
-        <ErrorHandler>
-          <Container>
-            <Route path="/" exact component={Welcome} />
-            <Route path="/arena/choice" exact component={Choice} />
-            <Route path="/arena/:first/:second" exact component={Arena} />
-            <Route
-              path="/stats"
-              exact
-              component={() => <Stats async={async} />}
-            />
-          </Container>
-          <Debug async={async} setAsync={setAsync} />
-        </ErrorHandler>
+        <Container>
+          <Route path="/" exact component={Welcome} />
+          <Route path="/arena/choice" exact component={Choice} />
+          <Route path="/arena/:first/:second" exact component={Arena} />
+          <Route
+            path="/stats"
+            exact
+            component={() => <Stats async={async} />}
+          />
+        </Container>
+        <Debug async={async} setAsync={setAsync} />
       </BrowserRouter>
     </ConcurrentMode>
   );
