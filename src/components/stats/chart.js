@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { unstable_createResource as createResource } from "../../vendor/react-cache.development";
 import { unstable_scheduleCallback as scheduleCallback } from "scheduler";
 import styled from "styled-components";
 
@@ -12,7 +13,12 @@ import {
 const fetchApi = async () => {
   const response = await fetch(`http://localhost:4200/pokemons/stats`);
   const result = await response.json();
-  return result;
+  return result.map(data => ({
+    x: data.attack,
+    y: data.defense,
+    z: data.speed,
+    name: data.name
+  }));
 };
 
 const Container = styled.div`
@@ -53,60 +59,42 @@ const PokemonPoint = ({ x, y, datum, name }) => (
   />
 );
 
-class Chart extends React.Component {
-  state = {
-    chartData: [],
-    count: 10
-  };
+const ApiResource = createResource(fetchApi);
 
-  changeHandler = event => {
-    const { async } = this.props;
+const Chart = ({ async }) => {
+  const [count, setCount] = useState(10);
+  const changeCountHandler = event => {
     const count = parseInt(event.target.value, 10);
 
     if (async) {
       console.log("async update");
-      scheduleCallback(() => this.setState({ count }));
+      scheduleCallback(() => setCount(count));
     } else {
       console.log("sync update");
-      this.setState({ count });
+      setCount(count);
     }
   };
 
-  componentDidMount() {
-    fetchApi().then(pokemonData =>
-      this.setState(() => ({
-        chartData: pokemonData.map(data => ({
-          x: data.attack,
-          y: data.defense,
-          z: data.speed,
-          name: data.name
-        }))
-      }))
-    );
-  }
+  const chartData = ApiResource.read();
+  const data = chartData.slice(0, count);
 
-  render() {
-    const { chartData, count } = this.state;
-    const data = chartData.slice(0, count);
-
-    return (
-      <Container>
-        <InputContainer>
-          Show first
-          <Input type="number" value={count} onChange={this.changeHandler} />
-          Pokemons:
-        </InputContainer>
-        <VictoryChart
-          theme={VictoryTheme.material}
-          domain={{ x: [0, 200], y: [0, 200] }}
-        >
-          <VictoryAxis label="Attack" />
-          <VictoryAxis dependentAxis label="Defense" />
-          <VictoryScatter data={data} dataComponent={<PokemonPoint />} />
-        </VictoryChart>
-      </Container>
-    );
-  }
-}
+  return (
+    <Container>
+      <InputContainer>
+        Show first
+        <Input type="number" value={count} onChange={changeCountHandler} />
+        Pokemons:
+      </InputContainer>
+      <VictoryChart
+        theme={VictoryTheme.material}
+        domain={{ x: [0, 200], y: [0, 200] }}
+      >
+        <VictoryAxis label="Attack" />
+        <VictoryAxis dependentAxis label="Defense" />
+        <VictoryScatter data={data} dataComponent={<PokemonPoint />} />
+      </VictoryChart>
+    </Container>
+  );
+};
 
 export default Chart;
