@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import {fetchDebug} from '../../debug/fetch';
-import { unstable_createResource as createResource } from "../../../vendor/react-cache.development";
+// import { unstable_createResource as createResource } from "../../../vendor/react-cache.development";
 import styled from "styled-components";
 
 import FieldContainer from "./field-container";
@@ -20,38 +20,60 @@ const fetchApi = async () => {
   return result.results;
 };
 
-const ApiResource = createResource(fetchApi);
+// const ApiResource = createResource(fetchApi);
 
-const useField = () => {
-  const [value, setter] = useState();
-  const changeHandler = event => setter(event.target.value);
-  return [value, changeHandler];
-};
+// const useField = () => {
+//   const [value, setter] = useState();
+//   const changeHandler = event => setter(event.target.value);
+//   return [value, changeHandler];
+// };
 
-const Form = ({ history }) => {
-  const pokemons = ApiResource.read();
+class Form extends Component {
+  constructor(props) {
+    super(props);
 
-  const [first, handleFirst] = useField();
-  const [second, handleSecond] = useField();
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFirst = this.handleFirst.bind(this);
+    this.handleSecond = this.handleSecond.bind(this);
 
-  const onSubmit = event => {
+    this.state = { pokemons: [], first: null, second: null };
+  }
+
+  async componentDidMount() {
+    const pokemons = await fetchApi();
+    this.setState({ pokemons });
+  }
+
+  handleSubmit(event) {
     event.preventDefault();
 
-    if (first && second) {
-      history.push(`/arena/${first}/${second}`);
+    if (this.state.first && this.state.second) {
+      this.props.history.push(
+        `/arena/${this.state.first}/${this.state.second}`
+      );
     }
-  };
+  }
 
-  return (
-    <HtmlForm onSubmit={onSubmit}>
-      <FieldContainer
-        pokemons={pokemons}
-        onFirst={handleFirst}
-        onSecond={handleSecond}
-      />
-      <FightButton first={first} second={second} />
-    </HtmlForm>
-  );
-};
+  handleFirst(event) {
+    this.setState({ first: event.target.value });
+  }
+
+  handleSecond(event) {
+    this.setState({ second: event.target.value });
+  }
+
+  render() {
+    return (
+      <HtmlForm onSubmit={this.handleSubmit}>
+        <FieldContainer
+          pokemons={this.state.pokemons}
+          onFirst={this.handleFirst}
+          onSecond={this.handleSecond}
+        />
+        <FightButton first={this.state.first} second={this.state.second} />
+      </HtmlForm>
+    );
+  }
+}
 
 export default Form;
