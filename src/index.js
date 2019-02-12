@@ -7,7 +7,7 @@ import styled from "styled-components";
 import "./index.css";
 import { BrowserRouter, Route } from "react-router-dom";
 
-import ErrorHandler from "./components/design-system/errors";
+// import ErrorHandler from "./components/design-system/errors";
 import Welcome from "./components/home/welcome";
 import Choice from "./components/arena/choice/choice";
 import Arena from "./components/arena/battle/arena";
