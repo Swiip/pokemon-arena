@@ -8,23 +8,15 @@ const Container = styled.div`
   justify-content: space-around;
 `;
 
-const SyncAsync = ({ async }) => {
-  const toSync = () => {
-    window.location.href = "/";
-  };
-  const toAsync = () => {
-    window.location.href = "/?async";
-  };
-  return (
-    <Container>
-      <button disabled={!async} onClick={toSync}>
-        Normal rendering
-      </button>
-      <button disabled={async} onClick={toAsync}>
-        Concurrent rendering
-      </button>
-    </Container>
-  );
-};
+const SyncAsync = ({ async, setAsync }) => (
+  <Container>
+    <button disabled={!async} onClick={() => setAsync(false)}>
+      Normal rendering
+    </button>
+    <button disabled={async} onClick={() => setAsync(true)}>
+      Concurrent rendering
+    </button>
+  </Container>
+);
 
 export default SyncAsync;

@@ -1,5 +1,8 @@
-import React from "react";
-import { render, unstable_createRoot as createRoot } from "react-dom";
+import React, {
+  useState,
+  unstable_ConcurrentMode as ConcurrentMode
+} from "react";
+import { render } from "react-dom";
 import styled from "styled-components";
 import "./index.css";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -17,34 +20,28 @@ const Container = styled.div`
   min-width: 100vw;
 `;
 
-const rootElement = document.getElementById("root");
+const App = () => {
+  const [async, setAsync] = useState(false);
 
-const syncRender = () => {
-  console.log("sync rendering");
-  render(<App />, rootElement);
+  return (
+    <ConcurrentMode>
+      <BrowserRouter>
+        <ErrorHandler>
+          <Container>
+            <Route path="/" exact component={Welcome} />
+            <Route path="/arena/choice" exact component={Choice} />
+            <Route path="/arena/:first/:second" exact component={Arena} />
+            <Route
+              path="/stats"
+              exact
+              component={() => <Stats async={async} />}
+            />
+          </Container>
+          <Debug async={async} setAsync={setAsync} />
+        </ErrorHandler>
+      </BrowserRouter>
+    </ConcurrentMode>
+  );
 };
 
-const asyncRender = () => {
-  console.log("async rendering");
-  createRoot(rootElement).render(<App async />);
-};
-
-const App = ({ async }) => (
-  <BrowserRouter>
-    <ErrorHandler>
-      <Container>
-        <Route path="/" exact component={Welcome} />
-        <Route path="/arena/choice" exact component={Choice} />
-        <Route path="/arena/:first/:second" exact component={Arena} />
-        <Route path="/stats" exact component={() => <Stats async={async} />} />
-      </Container>
-      <Debug async={async} />
-    </ErrorHandler>
-  </BrowserRouter>
-);
-
-if (window.location.search === "?async") {
-  asyncRender();
-} else {
-  syncRender();
-}
+render(<App />, document.getElementById("root"));
