@@ -37,16 +37,17 @@ const Content = styled.div`
   display: ${({ open }) => (open ? "bloc" : "none")};
 `;
 
-const Debug = ({ async }) => {
+const Debug = ({ async, setAsync }) => {
   const [open, setOpen] = useState(false);
   const toggle = () => {
     setOpen(!open);
   };
+
   return (
     <Container open={open}>
       <Title onClick={toggle}>Debug {open ? "↓" : "↑"}</Title>
       <Content open={open}>
-        <SyncAsync async={async} />
+        <SyncAsync async={async} setAsync={setAsync} />
         <Latency />
       </Content>
     </Container>

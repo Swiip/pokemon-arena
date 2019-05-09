@@ -10,7 +10,7 @@ const Chart = lazy(() => import("./chart"));
 const Stats = ({ async }) => (
   <Page>
     <BackButton to="/" />
-    <Title>Statistics ({async ? "async" : "sync"})</Title>
+    <Title>Statistics ({async ? "Concurrent" : "Normal"} mode)</Title>
     <Suspense fallback={<Loader />}>
       <Chart async={async} />
     </Suspense>
