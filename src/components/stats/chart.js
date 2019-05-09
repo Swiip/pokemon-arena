@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, Suspense } from "react";
 import styled from "styled-components";
 import {fetchDebug} from '../debug/fetch';
 
+import Loader from "../design-system/loader";
 import { unstable_createResource as createResource } from "../../vendor/react-cache.development";
 
 import Input from "./input";
@@ -49,4 +50,9 @@ const Chart = ({ async }) => {
   );
 };
 
-export default Chart;
+const SuspenseBuffer = ({async}) => 
+  <Suspense fallback={<Loader />}>
+    <Chart async={async} />
+  </Suspense>
+
+export default SuspenseBuffer;
