@@ -1,12 +1,98 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React, { useState, useEffect } from "react";
+import styled, { css, keyframes } from "styled-components";
 
-const PokemonImage = styled.img`
+const attack = keyframes`
+  from {
+    transform: translateX(0);
+  }
+
+
+  20% {
+    transform: translateX(0);
+  }
+
+  60% {
+    transform: translate3d(250px, -60px, 0);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const attackSecond = keyframes`
+  from {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(0);
+  }
+
+  60% {
+    transform: translate3d(-250px, 60px, 0);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const PokemonImageContainer = styled.div`
   position: absolute;
+  height: 62px;
+
+  ${({ attacking, position }) =>
+    attacking && position === "first"
+      ? css`
+          animation: ${attack} 1s linear 1;
+        `
+      : attacking
+      ? css`
+          animation: ${attackSecond} 1s linear 1;
+        `
+      : css``}
+
+
+      ${({ targeted, dead }) =>
+        targeted
+          ? css`
+              ::after {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 100%;
+                background: url("../../Attaque.svg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                position: absolute;
+                z-index: 2;
+                left: 0;
+                top: 0;
+              }
+            `
+          : dead
+          ? css`
+              ::after {
+                content: "";
+                display: block;
+                width: 100%;
+                height: 100%;
+                background: url("../../Nuage.svg");
+                background-repeat: no-repeat;
+                position: absolute;
+                z-index: 2;
+                left: 0;
+                top: 0;
+              }
+            `
+          : css``}
+
 
   ${({ position }) =>
     position === "first"
       ? css`
+          z-index: 1;
           left: 100px;
           bottom: 120px;
         `
@@ -14,6 +100,10 @@ const PokemonImage = styled.img`
           right: 100px;
           top: 150px;
         `}
+`;
+
+const PokemonImage = styled.img`
+  height: 100%;
 `;
 
 const StatBar = styled.div`
@@ -74,29 +164,54 @@ const LifeBarNumbers = styled.p`
 `;
 
 const getImage = (position, name) =>
-  position === "first"
-    ? `/api/img/back/${name}.gif`
-    : `/api/img/${name}.gif`;
+  position === "first" ? `/api/img/back/${name}.gif` : `/api/img/${name}.gif`;
 
-const Opponent = ({ position, data }) => (
-  <>
-    <PokemonImage
-      position={position}
-      src={getImage(position, data.name)}
-      alt={data.name}
-    />
-    <StatBar position={position}>
-      <StatBarName>{data.name}</StatBarName>
-      <LifeBarSection>
-        <LifeBarContainer>
-          <LifeBar health={data.hp.current / data.hp.init} />
-        </LifeBarContainer>
-        <LifeBarNumbers>
-          {data.hp.current} / {data.hp.init}
-        </LifeBarNumbers>
-      </LifeBarSection>
-    </StatBar>
-  </>
-);
+const Opponent = ({ position, data, attacking, dead }) => {
+  const [isAnimationStarted, setAnimation] = useState(false);
+  const [targeted, setTargeted] = useState(false);
+
+  useEffect(
+    () => {
+      if (!attacking) {
+        setTargeted(true);
+
+        setTimeout(() => {
+          setTargeted(false);
+        }, 500);
+        return;
+      }
+      setAnimation(true);
+
+      setTimeout(() => {
+        setAnimation(false);
+      }, 1500);
+    },
+    [attacking]
+  );
+
+  return (
+    <>
+      <PokemonImageContainer
+        position={position}
+        attacking={isAnimationStarted}
+        targeted={targeted}
+        dead={dead}
+      >
+        <PokemonImage src={getImage(position, data.name)} alt={data.name} />
+      </PokemonImageContainer>
+      <StatBar position={position}>
+        <StatBarName>{data.name}</StatBarName>
+        <LifeBarSection>
+          <LifeBarContainer>
+            <LifeBar health={data.hp.current / data.hp.init} />
+          </LifeBarContainer>
+          <LifeBarNumbers>
+            {data.hp.current} / {data.hp.init}
+          </LifeBarNumbers>
+        </LifeBarSection>
+      </StatBar>
+    </>
+  );
+};
 
 export default Opponent;
