@@ -10,7 +10,7 @@ const initialStatePokemon = data => {
   return {
     name: data.name,
     xp: data.base_experience,
-    hp: { init: hp, current: hp },
+    hp: { init: hp , current: hp },
     attack: getStat("attack", data),
     defense: getStat("defense", data),
     moves: data.moves
@@ -44,15 +44,21 @@ export const reducer = (state, action) => {
         defender.hp.current = 0;
       }
       let logs = [
-        `<strong>${attacker.name}</strong> attack with <strong>${
-          move.name
-        }</strong> and does <strong>${damage}</strong> damage.`,
+        {
+          type: 'attack',
+          attackerName: attacker.name,
+          move: move.name,
+          damage
+        },
         ...state.logs
       ];
 
       if (defender.hp.current === 0) {
         winner = attacker;
-        logs = [`${attacker.name} wins!.`, ...state.logs];
+        logs = [{
+          type: 'win',
+          name: attacker.name,
+        }, ...state.logs];
       }
 
       return {
