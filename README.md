@@ -31,8 +31,8 @@ The subject is to generate an error in the Title component.
 - In `src/components/design-system/title.js` create an `ErrorTitle` component which throw an error. Replace the default export to the new component.
 - http://localhost:3000/arena/choice should fail
 - Create from scratch or describe `src/components/design-system/errors.js`.
-- Use `ErrorHandler` in `src/components/arena/choice/choice.js` around the title. **Beware of create-react-app overlay**, you can't disable it but you can remove it with escape.
-- Remove `ErrorHandler` from `src/components/arena/choice/choice.js`, add it in `src/index.js`.
+- Use `ErrorHandler` in `src/index.js` around the title. **Beware of create-react-app overlay**, you can't disable it but you can remove it with escape.
+- Add `ErrorHandler` in `src/components/arena/choice/choice.js`. **Error does not crash the whole app now !**
 - Use back the normal `Title` component to get the app works again.
 
 ### Step 3: Suspense
